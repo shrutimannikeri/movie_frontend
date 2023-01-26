@@ -17,6 +17,7 @@ import { MoviewDetailPage } from './MoviewDetailPage';
 import { NotFound } from './NotFound';
 
 import { EditMovie } from './EditMovie';
+import { BasicForm } from './BasicForm';
 
 const Search = styled('div')(({ theme }) => ({
    position: 'relative',
@@ -130,6 +131,7 @@ const navigate=useNavigate();
     <Route path="/404" element={<NotFound />} />
     { /*-> mathes any path  its navigate to /404 page*/}
     <Route path="*" element={<Navigate to="/404" />} />
+    <Route path="/basicform" element={<BasicForm />} />
    </Routes>
     </div>
   );
@@ -147,4 +149,7 @@ function About(){
     <div>welcome to movie app</div>
   )
 }
+
+
+
 export default App;
