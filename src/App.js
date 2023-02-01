@@ -91,6 +91,7 @@ const navigate=useNavigate();
           <Button color="inherit" onClick={()=>navigate('/about')}>About</Button>
           <Button color="inherit" onClick={()=>navigate('/movies')}>Movies</Button>
           <Button color="inherit" onClick={()=>navigate('/movies/add')}>Add Movies</Button>
+          <Button color="inherit" onClick={()=>navigate('/basicform')}>Basic Form</Button>
           <Search sx={{ marginLeft: "auto" }}>
             <SearchIconWrapper>
               <SearchIcon />
