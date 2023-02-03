@@ -18,6 +18,11 @@ import { NotFound } from './NotFound';
 
 import { EditMovie } from './EditMovie';
 import { BasicForm } from './BasicForm';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import { Paper } from '@mui/material';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const Search = styled('div')(({ theme }) => ({
    position: 'relative',
@@ -62,7 +67,13 @@ const Search = styled('div')(({ theme }) => ({
 
 
 function App() {
-
+  const [mode,setMode]=useState("light")
+  const darkTheme = createTheme({
+    palette: {
+      mode: mode,
+    },
+  });
+  
 //const [movieList, setMovieList]=useState(INITIAL_MOVIE_LIST)
 const [movieList, setMovieList]=useState([])
 
@@ -82,6 +93,8 @@ const navigate=useNavigate();
 
 
   return (
+    <ThemeProvider theme={darkTheme}>
+      <Paper sx={{minHeight: "100vh",borderRadius: 0}} elevation={3}>
     <div className="App">
       <AppBar position="static">
         <Toolbar>
@@ -92,6 +105,8 @@ const navigate=useNavigate();
           <Button color="inherit" onClick={()=>navigate('/movies')}>Movies</Button>
           <Button color="inherit" onClick={()=>navigate('/movies/add')}>Add Movies</Button>
           <Button color="inherit" onClick={()=>navigate('/basicform')}>Basic Form</Button>
+          <Button color="inherit" onClick={()=>setMode(mode==="dark"?"light":"dark")}>{mode==="dark"? <Brightness7Icon /> : <Brightness4Icon />}</Button>
+       
           <Search sx={{ marginLeft: "auto" }}>
             <SearchIconWrapper>
               <SearchIcon />
@@ -103,7 +118,7 @@ const navigate=useNavigate();
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search>
-        </Toolbar>
+         </Toolbar>
       </AppBar>
       
         {/* <AddMovie movielist={movieList} setmovies={setMovieList}/>
@@ -135,6 +150,8 @@ const navigate=useNavigate();
     <Route path="/basicform" element={<BasicForm />} />
    </Routes>
     </div>
+    </Paper>
+    </ThemeProvider>
   );
 }
 
